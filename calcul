@@ -1,0 +1,49 @@
+def calculer_consommation():
+    # Énergie maximale disponible
+    energie_max_hwh = 13.88  # En HWh
+    energie_max_kwh = 0.1388  # En kWh
+
+    print("Bienvenue dans le calculateur de consommation énergétique !")
+    print(f"Vous disposez de {energie_max_hwh} HWh, soit {energie_max_kwh} kWh au total.")
+
+    # Demander les consommations des utilisateurs
+    smartphone = float(input("Combien de smartphones souhaitez-vous charger complètement ? (1 charge = 1.5 HWh) : "))
+    ordinateur = float(input("Combien d'ordinateurs portables souhaitez-vous charger complètement ? (1 charge = 5 HWh) : "))
+    instagram = float(input("Combien d'heures souhaitez-vous passer sur Instagram ? (1 heure = 1 HWh) : "))
+    youtube = float(input("Combien de minutes souhaitez-vous regarder YouTube en 720p ? (1 heure = 15 HWh) : "))
+    youtube_heures = youtube / 60  # Convertir les minutes en heures
+
+    # Calculer la consommation totale
+    conso_smartphone = smartphone * 1.5
+    conso_ordinateur = ordinateur * 5
+    conso_instagram = instagram * 1
+    conso_youtube = youtube_heures * 15
+
+    consommation_totale_hwh = (
+        conso_smartphone + conso_ordinateur + conso_instagram + conso_youtube
+    )
+
+    # Vérifier si l'énergie est suffisante
+    if consommation_totale_hwh <= energie_max_hwh:
+        print("\nVotre consommation est valide ! Voici le résumé :")
+    else:
+        print("\nAttention ! Votre consommation dépasse l'énergie disponible. Voici le résumé :")
+
+    # Résumé des consommations
+    print(f"- Charge smartphone : {conso_smartphone:.2f} HWh")
+    print(f"- Charge ordinateur portable : {conso_ordinateur:.2f} HWh")
+    print(f"- Instagram : {conso_instagram:.2f} HWh")
+    print(f"- YouTube (720p) : {conso_youtube:.2f} HWh")
+    print(f"= Consommation totale : {consommation_totale_hwh:.2f} HWh")
+    print(f"= Énergie restante : {energie_max_hwh - consommation_totale_hwh:.2f} HWh")
+
+    # Conclusion
+    if consommation_totale_hwh <= energie_max_hwh:
+        conclusion = "Vous avez géré votre énergie efficacement et respecté la limite disponible."
+    else:
+        conclusion = "Votre consommation dépasse la limite. Réduisez certains usages pour rester dans les limites disponibles."
+
+    print("\nConclusion :", conclusion)
+
+# Exécuter le programme
+calculer_consommation()
